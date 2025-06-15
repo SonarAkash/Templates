@@ -1,0 +1,20 @@
+1. Byte Stream Hierarchy (for raw binary data)
+The root classes for byte streams are:
+
+InputStream (for reading raw binary data)
+OutputStream (for writing raw binary data)
+Subclasses of InputStream:
+ByteArrayInputStream: Reads data from a byte array as an input stream.
+FileInputStream: Reads data from a file.
+ObjectInputStream: Reads objects previously written using ObjectOutputStream.
+PipedInputStream: Reads data from a piped output stream (used in multithreading).
+BufferedInputStream: Adds buffering to reduce I/O operations.
+DataInputStream: Reads primitive data types (int, float, etc.) from an input stream.
+Subclasses of OutputStream:
+ByteArrayOutputStream: Writes data to a byte array as an output stream.
+FileOutputStream: Writes data to a file.
+ObjectOutputStream: Writes objects to an output stream (serialization).
+PipedOutputStream: Writes data to a piped input stream.
+BufferedOutputStream: Adds buffering to reduce I/O operations.
+DataOutputStream: Writes primitive data types (int, float, etc.) to an output stream.
+PrintStream: Writes formatted representations of objects (e.g., System.out).

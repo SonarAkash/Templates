@@ -1,0 +1,9 @@
+                 Reader                             Writer
+                    |                                  |
+    ---------------------------------------------------------------
+    |           |                |              |                |
+StringReader CharArrayReader BufferedReader StringWriter BufferedWriter
+
+
+InputStreamReader is extended by FileReader
+OutputStreamWriter is extended by FileWriter

@@ -1,0 +1,51 @@
+Even though both solutions appear to have the same time complexity on paper (O(10⁷)), the second solution causes TLE, while the first one runs fine. Let's analyze why this happens and how to fix it.
+
+🔍 Key Differences That Cause TLE
+Even though both solutions have the same theoretical complexity, constant factors and practical efficiency matter a lot in recursive problems.
+
+1️⃣ DP Table Structure Difference
+First solution: Uses dp[target][k], where target decreases in recursive calls.
+Second solution: Uses dp[qIdx][val], where val increases in recursive calls.
+
+📌 Issue:
+In the second solution, val starts from 0 and increases up to nums[nIdx] (which can be 1000). This leads to a much larger number of recursive calls compared to the first solution, where target decreases, reducing recursion depth.
+
+2️⃣ Integer.MAX_VALUE Overflow Propagation
+The second solution frequently returns Integer.MAX_VALUE when no solution is found.
+When adding values (val + q[qIdx][2]), it might cause unnecessary deep recursions.
+
+📌 Issue:
+Even though the recursive function is memoized, the increasing nature of val causes many more function calls than in the first solution, leading to TLE.
+
+3️⃣ First Solution Explores Fewer States
+The first solution only explores valid target values (by decreasing target).
+The second solution explores all increasing val values, leading to redundant computations.
+
+📌 Example of Why This Happens Consider:
+nums = [1000];
+queries = [[0, 0, 1], [0, 0, 2], ..., [0, 0, 10]]
+The first solution directly tries to reach target = 1000.
+The second solution tries val = 1, 2, 3, ..., 1000, leading to much deeper recursion and TLE.
+
+✅ How to Fix the Second Solution
+Here are some ways to optimize it:
+
+🔹 1. Use a Different DP State (Similar to First Solution)
+Instead of dp[qIdx][val], restructure it as dp[target][qIdx], so that recursion decreases target, reducing calls.
+
+🔹 2. Use an Iterative DP Approach Instead of Recursion
+Convert the solution into bottom-up DP to avoid excessive recursive calls.
+
+🔹 3. Prune Unnecessary Calls
+Before making a recursive call:
+
+if (val + q[qIdx][2] > nums[nIdx]) return Integer.MAX_VALUE;
+This avoids unnecessary calculations.
+
+🔹 4. Reduce dp Size
+Since nums.length ≤ 10, you can precompute solutions for each nums[i] using Knapsack-style DP instead of recalculating in each iteration.
+
+🚀 Conclusion
+Even though both solutions have O(10⁷) worst-case complexity, the second solution expands more states due to increasing val, causing TLE. By modifying the DP structure or switching to an iterative approach, you can avoid unnecessary deep recursion and fix TLE.
+
+Would you like me to help rewrite an optimized version? 🔥

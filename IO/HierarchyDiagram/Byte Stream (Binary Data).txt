@@ -1,0 +1,7 @@
+                 InputStream                      OutputStream
+                     |                                 |
+    ---------------------------------------------------------------
+    |            |            |                  |           |    
+ByteArrayInputStream  FileInputStream   ByteArrayOutputStream FileOutputStream
+BufferedInputStream is a subclass of InputStream
+BufferedOutputStream is a subclass of OutputStream
